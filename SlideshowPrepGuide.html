@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Preparing Mass Slideshows</title>
   <style>
     :root {
@@ -34,6 +35,7 @@
     .radio-group label {
       margin-right: 16px;
       display: inline-block;
+      font-size: inherit;
     }
 
     details {
@@ -59,7 +61,9 @@
     }
 
     th {
-      background-color: #f0f0f0;
+      background-color: var(--text-color);
+      color: var(--background-color);
+
     }
 
     code {
@@ -73,13 +77,15 @@
       display: block;
       margin-top: 6px;
       color: #555;
+      font-size: 0.8em;
     }
 
     .note::before {
       content: "Note: ";
       font-weight: bold;
-      color: #c0392b;
       /* A strong red tone for emphasis */
+      color: #c0392b;
+      font-size: inherit;
     }
 
     .example-toggle {
@@ -89,8 +95,8 @@
       /* Dark goldenrod: good contrast on white */
       text-decoration: underline;
       cursor: pointer;
-      font-size: 1em;
       padding: 0;
+      font-size: 0.8em;
     }
 
     .example-image {
@@ -259,7 +265,7 @@
   </details>
 
 
-  <details>
+  <details open>
     <summary>Step-by-Step Instructions</summary>
     <form class="radio-group">
       <label>
@@ -284,7 +290,7 @@
 
     <div id="LocalInstructions" style="display: none">
 
-      <h3>1. Identify the Liturgical Date</h3>
+      <h3>1. Create the Google Drive Folder Shortcut</h3>
       <ul>
         <li>
           Use the Elvanto service record to determine the liturgical date (e.g.
@@ -295,20 +301,20 @@
 
         <li>
           Add a shortcut to that folder inside <code>Mass Slides/Current Mass Slides/</code>.
+          <div class="note">
+            You <em>must</em> use 'Add shortcut to Google Drive' and
+            <em>not</em> 'Create Shortcut' or the shortcut will not work correctly
+            on all devices.
+            <button class="example-toggle" onclick="toggleNextImage(this)">
+              Show me
+            </button>
+            <img
+              src="AddShortcutToGoogleDrive.png"
+              alt="Add Shortcut to Google Drive"
+              class="example-image"
+            />
+          </div>
         </li>
-        <div class="note">
-          You <em>must</em> use 'Add shortcut to Google Drive' and
-          <em>not</em> 'Create Shortcut' or the shortcut will not work correctly
-          on all devices.
-          <button class="example-toggle" onclick="toggleNextImage(this)">
-          Show me
-        </button>
-          <img
-          src="AddShortcutToGoogleDrive.png"
-          alt="Add Shortcut to Google Drive"
-          class="example-image"
-        />
-        </div>
         <li>
           Name it using the calendar date of the Sunday (e.g.
           <code>2025-07-13</code>).
@@ -431,7 +437,7 @@
           <em>can't</em> use that version of Google Drive.
       </div>
 
-      <h3>1. Identify the Liturgical Date</h3>
+      <h3>1. Create the Google Drive Folder Shortcut</h3>
       <ul>
         <li>
           Use the Elvanto service record to determine the liturgical date (e.g.
@@ -461,7 +467,7 @@
         </li>
       </ul>
 
-      <h3>3. Create Slideshows from Templates</h3>
+      <h3>2. Create Slideshows from Templates</h3>
       <table>
         <tr>
           <th>Mass</th>
@@ -519,7 +525,7 @@
         </li>
       </ul>
 
-      <h3>4. Fill in Slides Using Elvanto & Lyrics Files</h3>
+      <h3>3. Fill in Slides Using Elvanto & Lyrics Files</h3>
       <ul>
         <li>
           Use the Elvanto service record to find:
@@ -553,7 +559,7 @@
         </li>
       </ul>
 
-      <h3>5. Special Notes for Livestream</h3>
+      <h3>4. Special Notes for Livestream</h3>
       <ul>
         <li>Use the Live Stream Template as-is.</li>
         <li>
