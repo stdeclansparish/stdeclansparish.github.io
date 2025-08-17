@@ -16,8 +16,8 @@
     @media (prefers-color-scheme: dark) {
       :root {
         /* better for dark mode */
-        --text-color: #f0f0f0;
-        --background-color: #121212;
+        --text-color: #E0E0E0;
+        --background-color: #0F172A;
         --code-background: #f9f9f9;
       }
     }
@@ -96,7 +96,7 @@
       text-decoration: underline;
       cursor: pointer;
       padding: 0;
-      font-size: 0.8em;
+      font-size: inherit;
     }
 
     .example-image {
@@ -161,7 +161,7 @@
     <summary>Folder Structure</summary>
     <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; font-family: sans-serif;">
       <thead>
-        <tr style="background-color: #f2f2f2;">
+        <tr>
           <th>Folder / File</th>
           <th>Description</th>
         </tr>
@@ -245,25 +245,24 @@
           <td>Seasonal folders</td>
         </tr>
         <tr>
-          <td style="padding-left: 60px;">Live Stream Template.pptx</td>
+          <td style="padding-left: 60px;">Live Stream Template.potx</td>
           <td>Template for livestream slides</td>
         </tr>
         <tr>
-          <td style="padding-left: 60px;">No Music Overheads Template.pptx</td>
+          <td style="padding-left: 60px;">No Music Overheads Template.potx</td>
           <td>Template for spoken-only overheads</td>
         </tr>
         <tr>
-          <td style="padding-left: 60px;">Overheads Template - Chanted Ordinary.pptx</td>
+          <td style="padding-left: 60px;">Overheads Template - Chanted Ordinary.potx</td>
           <td>Template for chanted Mass settings</td>
         </tr>
         <tr>
-          <td style="padding-left: 60px;">Overheads Template.pptx</td>
+          <td style="padding-left: 60px;">Overheads Template.potx</td>
           <td>General overhead template</td>
         </tr>
       </tbody>
     </table>
   </details>
-
 
   <details open>
     <summary>Step-by-Step Instructions</summary>
@@ -296,7 +295,7 @@
           Use the Elvanto service record to determine the liturgical date (e.g.
           <em>15th Sunday in Ordinary Time, Year B</em>).
         </li>
-        <li>Navigate to the corresponding <code>[Liturgical Date]/</code>folder in <code>Mass Slides/Archives/</code>.
+        <li>Navigate to the corresponding <code>[Liturgical Date]/</code> folder in <code>Mass Slides/Archives/</code>.
         </li>
 
         <li>
@@ -342,32 +341,32 @@
         </tr>
         <tr>
           <td><code>vigil.ppt</code></td>
-          <td>Overheads Template</td>
+          <td><code>Overheads Template.potx</code></td>
           <td>Does not include chanted responses</td>
         </tr>
         <tr>
           <td><code>7am.ppt</code></td>
-          <td>No Music Overheads Template</td>
+          <td><code>No Music Overheads Template.potx</code></td>
           <td>No hymns; includes texts for entrance and communion chants</td>
         </tr>
         <tr>
           <td><code>9am.ppt</code></td>
-          <td>Overheads Template - Chanted Ordinary</td>
+          <td><code>Overheads Template - Chanted Ordinary.potx</code></td>
           <td>Includes chanted responses</td>
         </tr>
         <tr>
           <td><code>11am.ppt</code></td>
-          <td>Overheads Template - Chanted Ordinary</td>
+          <td><code>Overheads Template - Chanted Ordinary.potx</code></td>
           <td>Includes chanted responses</td>
         </tr>
         <tr>
           <td><code>5pm.ppt</code></td>
-          <td>Overheads Template - Chanted Ordinary</td>
+          <td><code>Overheads Template - Chanted Ordinary.potx</code></td>
           <td>Includes chanted responses</td>
         </tr>
         <tr>
           <td><code>LiveStream.ppt</code></td>
-          <td>Live Stream Template</td>
+          <td><code>Live Stream Template.potx</code></td>
           <td>Green background, text at bottom, to allow layering with video feed</td>
         </tr>
       </table>
@@ -375,11 +374,20 @@
       <h3>3. Fill in Slides Using Elvanto & Lyrics Files</h3>
       <ul>
         <li>
-          Use the Elvanto service record to find:
+          Use the Elvanto service record to identify and paste in:
           <ul>
-            <li>Psalm (same for all Masses)</li>
-            <li>Alleluia verse (same for all Masses)</li>
-            <li>Hymns (except 7am)</li>
+            <li>From Elvanto:
+              <ul>
+                <li>Psalm response and verses (same for all Masses)</li>
+                <li>Alleluia verse (same for all Masses)</li>
+                <li>Entrance and Communion Antiphons <strong>(7am only)</strong></li>
+              </ul>
+            </li>
+            <li>From Lyrics Files:
+              <ul>
+                <li>Hymns <strong>(except 7am)</strong></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li>For 7am: Insert Entrance and Communion chants instead of hymns.</li>
