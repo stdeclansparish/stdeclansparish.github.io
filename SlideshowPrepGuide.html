@@ -11,6 +11,7 @@
       --text-color: #222;
       --background-color: #fff;
       --code-background: #767676;
+      --muted-text: #555;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -18,7 +19,11 @@
         /* better for dark mode */
         --text-color: #E0E0E0;
         --background-color: #0F172A;
-        --code-background: #f9f9f9;
+        --code-background: #CACACA;
+        --muted-text: #909090;
+      }
+      a {
+        color: #3399FF;
       }
     }
 
@@ -76,7 +81,7 @@
     .note {
       display: block;
       margin-top: 6px;
-      color: #555;
+      color: var(--muted-text);
       font-size: 0.8em;
     }
 
@@ -461,14 +466,24 @@
         </li>
       </ul>
 
-      <h3>2. Create Slideshows from Templates</h3>
+      <h3>2. Download Templates and Lyrics Libraries</h3>
+      <div class="note">If you have <em>just</em> finished doing another set of slides you can skip this step, but it is
+        best to have a recent copy, as both the template files and the library files can change from time to time.</div>
       <ul>
         <li>
-          Navigate to <code>Mass Slides/Slideshow Templates/[Season]/</code> and download the template files.
-          <div class="note">It is best to download a fresh copy of these template files if you haven't just used them, as the copies online may have been updated since you last downloaded them.</div>
+          Navigate to <code>Mass Slides/Slideshow Templates/[Season]/</code> and download the template
+          (<code>.potx</code>) files.
         </li>
-        <li>Double-click on a template file to create a new slideshow for each of the Mass times, saving them as
-          outlined in the table below.
+        <li>
+          Navigate to <code>Mass Slides/</code> and download <code>Overhead Lyrics.pptx</code> and
+          <code>Live Stream Lyrics.pptx</code>.
+        </li>
+      </ul>
+
+      <h3>3. Create Slideshows from Templates</h3>
+      <ul>
+        <li>Double-click on the template files downloaded in step 2 to create a new slideshow for each of the Mass
+          times, saving them as outlined in the table below.
           <div class="note">You will need to create multiple new files from the Chanted Ordinary template, as it is used
             for 9am, 11am, and 5pm.</div>
         </li>
@@ -511,7 +526,7 @@
         </tr>
       </table>
 
-      <h3>3. Fill in Slides Using Elvanto & Lyrics Files</h3>
+      <h3>4. Fill in Slides Using Elvanto & Lyrics Library Files</h3>
       <ul>
         <li>
           Use the Elvanto service record to identify and paste in:
@@ -522,7 +537,10 @@
           </ul>
         </li>
         <li>
-          Open the appropriate lyrics file and copy the section for each song:
+          Open the appropriate lyrics library file (downloaded in step 2) and copy the section for each song:
+          <div class="note">It is easiest if you select a song's lyrics by clicking on its section title in the panel on
+            the left. This selects all the slides for the song, including its title slide and empty final slide, as well
+            as its section title.</div>
           <ul>
             <li>
               Includes title slide, lyrics slides, and a blank slide at the end.
