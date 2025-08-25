@@ -1,636 +1,840 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preparing Mass Slideshows</title>
-  <style>
-    :root {
-      /* default for light mode */
-      --text-color: #222;
-      --background-color: #fff;
-      --code-background: #767676;
-      --muted-text: #555;
-    }
-
-    @media (prefers-color-scheme: dark) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,1,0&display=block"
+      rel="stylesheet"
+    />
+    <script>
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('theme');
+      const theme = savedTheme || (prefersDark ? 'dark-mode' : 'light-mode');
+      document.documentElement.classList.add(theme);
+    </script>
+    <title>Preparing Mass Slideshows</title>
+    <style>
       :root {
+        /* default for light mode */
+        --text-color: #222;
+        --background-color: #fff;
+        --code-background: #767676;
+        --muted-text: #555;
+        --button-bg: #f0f0f0;
+        --button-fg: #333;
+      }
+
+      .dark-mode {
         /* better for dark mode */
         --text-color: #E0E0E0;
         --background-color: #0F172A;
         --code-background: #CACACA;
         --muted-text: #909090;
+        --button-bg: #333;
+        --button-fg: #eee;
       }
-      a {
+
+      .dark-mode a {
         color: #3399FF;
       }
-    }
 
-    body {
-      color: var(--text-color);
-      background-color: var(--background-color);
-      font-family: sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: auto;
-      padding: 1em;
-    }
-
-    .radio-group label {
-      margin-right: 16px;
-      display: inline-block;
-      font-size: inherit;
-    }
-
-    details {
-      margin-bottom: 1em;
-    }
-
-    summary {
-      font-weight: bold;
-      font-size: 1.1em;
-      cursor: pointer;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1em 0;
-    }
-
-    th,
-    td {
-      border: 1px solid #ccc;
-      padding: 0.5em;
-    }
-
-    th {
-      background-color: var(--text-color);
-      color: var(--background-color);
-
-    }
-
-    code {
-      background: var(--code-background);
-      color: var(--background-color);
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
-    }
-
-    .note {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted-text);
-      font-size: 0.8em;
-    }
-
-    .note::before {
-      content: "Note: ";
-      font-weight: bold;
-      /* A strong red tone for emphasis */
-      color: #c0392b;
-      font-size: inherit;
-    }
-
-    .example-toggle {
-      background: none;
-      border: none;
-      color: #b8860b;
-      /* Dark goldenrod: good contrast on white */
-      text-decoration: underline;
-      cursor: pointer;
-      padding: 0;
-      font-size: inherit;
-    }
-
-    .example-image {
-      display: none;
-      margin-top: 10px;
-      max-width: 100%;
-      height: auto;
-    }
-
-    @media (max-width: 600px) {
-      .radio-group label {
-        display: block;
-        margin-bottom: 8px;
-        margin-right: 0;
+      .dark-mode #theme-icon::before {
+        content: "light_mode";
       }
-    }
-  </style>
-</head>
 
-<body>
-  <h1>Preparing Mass Slideshows for the Weekend</h1>
-  <p><em>Each week, six PowerPoint slideshows are prepared for the weekend Masses.
-      These are based on seasonal templates, customized using the Elvanto
-      service records, and saved in a structured archive.</em></p>
+      .light-mode {
+        /* default for light mode */
+        --text-color: #222;
+        --background-color: #fff;
+        --code-background: #767676;
+        --muted-text: #555;
+        --button-bg: #f0f0f0;
+        --button-fg: #333;
+      }
 
-  <details>
-    <summary>Tools & Resources</summary>
-    <ul>
-      <li><a target="_blank" rel="noopener noreferrer"
-          href="https://workspace.google.com/products/drive/#download">Google Drive for Desktop</a>
-        <ul>
-          <li>Optional, but highly recommended.</li>
-          <li>Makes it much quicker and easier to update files.</li>
-        </ul>
-      <li>PowerPoint</li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://stdeclansparish.elvanto.com.au/">Elvanto</a>
-        <ul>
-          <li>
-            Service plans and song lyrics for new songs are found here
-          </li>
-        </ul>
-      </li>
-      <li>
-        Template files
-        <ul>
-          <li>in
-            <code>Mass Slides/Slideshow Templates/&lt;Liturgical Season&gt;/</code>
-          </li>
-        </ul>
-      </li>
-      <li>
-        Lyrics files:
-        <ul>
-          <li><code>Mass Slides/Overhead Lyrics.ppt</code></li>
-          <li><code>Mass Slides/Live Stream Lyrics.ppt</code></li>
-        </ul>
-      </li>
-    </ul>
-  </details>
+      .light-mode a {
+        color: #0000EE;
+      }
 
-  <details>
-    <summary>Folder Structure</summary>
-    <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; font-family: sans-serif;">
-      <thead>
-        <tr>
-          <th>Folder / File</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Mass Slides/</strong></td>
-          <td>Root folder</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 20px;">Live Stream Lyrics.pptx</td>
-          <td>Library of lyrics for songs in livestream slideshows</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 20px;">Overhead Lyrics.pptx</td>
-          <td>Library of lyrics for songs in overhead slideshows</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 20px;"><strong>Archives/</strong></td>
-          <td>Contains slideshows for past services</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 40px;"><strong>
-          1 - Advent/<br>
-          2 - Ordinary Time/<br>
-          3 - Lent/<br>
-          4 - Easter/<br>
-          5 - Feasts & Solemnities/<br>
-          </strong></td>
-          <td>Seasonal grouping</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 60px;"><strong>Yr A/<br>Yr B/<br>Yr C/</strong></td>
-          <td>Liturgical year cycle folders<br>Ommitted for Feasts & Solemnities, as they are the same every year
-          </td>
-        </tr>
-        <tr>
-          <td style="padding-left: 80px;"><strong>[LiturgicalDate]/</strong></td>
-          <td>Like '14th Sunday'<br>Folder that should be added as a shortcut to 'Current Slides.'</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 100px;">LiveStream.pptx</td>
-          <td>Livestream slideshow for 9am Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 100px;"><strong>Overheads/</strong></td>
-          <td>Contains overhead slides for each Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 120px;">Vigil.pptx</td>
-          <td>Overhead slides for Vigil Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 120px;">7am.pptx</td>
-          <td>Overhead slides for 7am Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 120px;">9am.pptx</td>
-          <td>Overhead slides for 9am Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 120px;">11am.pptx</td>
-          <td>Overhead slides for 11am Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 120px;">5pm.pptx</td>
-          <td>Overhead slides for 5pm Mass</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 20px;"><strong>Current Mass Slides/</strong></td>
-          <td>Shortcuts to upcoming or recent services</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 20px;"><strong>Slideshow Templates/</strong></td>
-          <td>Templates for seasons and timeslots</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 40px;">
-            <strong>Advent/<br>Christmas/<br>Easter/<br>Feasts/<br>Lent/<br>Ordinary Time/</strong>
-          </td>
-          <td>Seasonal folders</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 60px;">Live Stream Template.potx</td>
-          <td>Template for livestream slides</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 60px;">Overheads No Music Template.potx</td>
-          <td>Template for spoken-only overheads (7am only)</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 60px;">Overheads Chanted Ordinary Template.potx</td>
-          <td>Template for chanted Mass settings
-            <ul>
-              <li>
-                Used in Ordinary Time and Lent for 9am, 11am and 5pm Sunday Masses
-              </li>
-              <li>
-                Ommitted from <code>Advent/</code> and <code>Easter, Christmas, Feasts/</code> folders
-              </li>
-              <li>
-                Includes plainchant slides for Gloria, Sanctus, Memorial Acclamation, Amen and Agnus Dei
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding-left: 60px;">Overheads Metrical Ordinary Template.potx</td>
-          <td>Overhead template for Masses where metrical settings of the Ordinary are used
-            <ul>
-              <li>
-                Used for Vigil Masses, and for 9am, 11am and 5pm Sunday Masses during Advent, Christmas, Easter and special feasts or solemnities
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </details>
+      .light-mode #theme-icon::before {
+        content: "dark_mode";
+      }
 
-  <details open>
-    <summary>Step-by-Step Instructions</summary>
-    <form class="radio-group">
-      <label>
-    <input
-      type="radio"
-      name="choice"
-      value="LocalInstructions"
-      onclick="showGroup('LocalInstructions')"
-    />
-    I'm using Google Drive for Desktop
-  </label>
-      <label>
-    <input
-      type="radio"
-      name="choice"
-      value="BrowserInstructions"
-      onclick="showGroup('BrowserInstructions')"
-    />
-    I'm using Google Drive in the browser
-  </label>
-    </form>
+      body {
+        color: var(--text-color);
+        background-color: var(--background-color);
+        font-family: sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: auto;
+        padding: 1em;
+      }
 
-    <div id="LocalInstructions" style="display: none">
+      .radio-group label {
+        margin-right: 16px;
+        display: inline-block;
+        font-size: inherit;
+      }
 
-      <h3>1. Create the Google Drive Folder Shortcut</h3>
+      details {
+        margin-bottom: 1em;
+      }
+
+      summary {
+        font-weight: bold;
+        font-size: 1.1em;
+        cursor: pointer;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1em 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5em;
+      }
+
+      th {
+        background-color: var(--text-color);
+        color: var(--background-color);
+
+      }
+
+      code {
+        background: var(--code-background);
+        color: var(--background-color);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+      }
+
+      .light-dark-toggle {
+        float: right;
+        padding: 0.2em 0.3em;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: var(--button-bg, #f0f0f0);
+        color: var(--button-fg, #333);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .note {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted-text);
+        font-size: 0.8em;
+      }
+
+      .note::before {
+        content: "Note: ";
+        font-weight: bold;
+        /* A strong red tone for emphasis */
+        color: #c0392b;
+        font-size: inherit;
+      }
+
+      .example-toggle {
+        background: none;
+        border: none;
+        color: #b8860b;
+        /* Dark goldenrod: good contrast on white */
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+      }
+
+      .example-image {
+        display: none;
+        margin-top: 10px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 600px) {
+        .radio-group label {
+          display: block;
+          margin-bottom: 8px;
+          margin-right: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick="toggleTheme()" id="theme-toggle" class="light-dark-toggle">
+      <span class="material-symbols-outlined" id="theme-icon"></span>
+    </button>
+
+    <h1>Preparing Mass Slideshows for the Weekend</h1>
+    <p>
+      <em
+        >Each week, six PowerPoint slideshows are prepared for the weekend
+        Masses. These are based on seasonal templates, customized using the
+        Elvanto service records, and saved in a structured archive.</em
+      >
+    </p>
+
+    <details>
+      <summary>Tools & Resources</summary>
       <ul>
         <li>
-          Use the Elvanto service record to determine the liturgical date (e.g.
-          <em>15th Sunday in Ordinary Time, Year B</em>).
-        </li>
-        <li>Navigate to the corresponding <code>[Liturgical Date]/</code> folder in <code>Mass Slides/Archives/</code>.
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://workspace.google.com/products/drive/#download"
+            >Google Drive for Desktop</a
+          >
+          <ul>
+            <li>Optional, but highly recommended.</li>
+            <li>Makes it much quicker and easier to update files.</li>
+          </ul>
         </li>
 
+        <li>PowerPoint</li>
         <li>
-          Add a shortcut to that folder inside <code>Mass Slides/Current Mass Slides/</code>.
-          <div class="note">
-            You <em>must</em> use 'Add shortcut to Google Drive' and
-            <em>not</em> 'Create Shortcut' or the shortcut will not work correctly
-            on all devices.
-            <button class="example-toggle" onclick="toggleNextImage(this)">
-              Show me
-            </button>
-            <img
-              src="AddShortcutToGoogleDrive.png"
-              alt="Add Shortcut to Google Drive"
-              class="example-image"
-            />
-          </div>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://stdeclansparish.elvanto.com.au/"
+            >Elvanto</a
+          >
+          <ul>
+            <li>Service plans and song lyrics for new songs are found here</li>
+          </ul>
         </li>
         <li>
-          Name it using the calendar date of the Sunday (e.g.
-          <code>2025-07-13</code>).
+          Template files
+          <ul>
+            <li>
+              in
+              <code
+                >Mass Slides/Slideshow Templates/&lt;Liturgical
+                Season&gt;/</code
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          Lyrics files:
+          <ul>
+            <li><code>Mass Slides/Overhead Lyrics.ppt</code></li>
+            <li><code>Mass Slides/Live Stream Lyrics.ppt</code></li>
+          </ul>
         </li>
       </ul>
+    </details>
 
-      <h3>2. Create Slideshows from Templates</h3>
-      <ul>
-        <li>
-          Navigate to <code>Mass Slides/Slideshow Templates/[Season]/</code> and double click on the appropriate
-          templates to create new .ppt files from them.
-        </li>
-        <li>
-          Save each file over its corresponding file in the archived folder you linked in step 1.
-          <div class="note"> You will need to create multiple new files from the Chanted Ordinary template, as it is
-            used
-            for 9am, 11am, and 5pm.</div>
-        </li>
-      </ul>
-      <table>
-        <tr>
-          <th>Filename</th>
-          <th>Template</th>
-          <th>Notes</th>
-        </tr>
-        <tr>
-          <td><code>vigil.ppt</code></td>
-          <td><code>Overheads Metrical Ordinary Template.potx</code></td>
-          <td>Only text is included for the sung Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>7am.ppt</code></td>
-          <td><code>Overheads No Music Template.potx</code></td>
-          <td>No hymns; includes texts for entrance and communion chants</td>
-        </tr>
-        <tr>
-          <td><code>9am.ppt</code></td>
-          <td><code>Overheads Chanted Ordinary Template.potx</code> <br>(<code>Overheads Metrical Ordinary Template.potx</code> where this template is ommitted)</td>
-          <td>Includes chanted Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>11am.ppt</code></td>
-          <td><code>Overheads Chanted Ordinary Template.potx</code> <br>(<code>Overheads Metrical Ordinary Template.potx</code> where this template is ommitted)</td>
-          <td>Includes chanted Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>5pm.ppt</code></td>
-          <td><code>Overheads Chanted Ordinary Template.potx</code> <br>(<code>Overheads Metrical Ordinary Template.potx</code> where this template is ommitted)</td>
-          <td>Includes chanted Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>LiveStream.ppt</code></td>
-          <td><code>Live Stream Template.potx</code></td>
-          <td>Green background, text at bottom, to allow layering with video feed</td>
-        </tr>
+    <details>
+      <summary>Folder Structure</summary>
+      <table
+        border="1"
+        cellpadding="6"
+        cellspacing="0"
+        style="border-collapse: collapse; font-family: sans-serif;"
+      >
+        <thead>
+          <tr>
+            <th>Folder / File</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mass Slides/</strong></td>
+            <td>Root folder</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px;">Live Stream Lyrics.pptx</td>
+            <td>Library of lyrics for songs in livestream slideshows</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px;">Overhead Lyrics.pptx</td>
+            <td>Library of lyrics for songs in overhead slideshows</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px;"><strong>Archives/</strong></td>
+            <td>Contains slideshows for past services</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 40px;">
+              <strong>
+                1 - Advent/<br />
+                2 - Ordinary Time/<br />
+                3 - Lent/<br />
+                4 - Easter/<br />
+                5 - Feasts & Solemnities/<br />
+              </strong>
+            </td>
+            <td>Seasonal grouping</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">
+              <strong>Yr A/<br />Yr B/<br />Yr C/</strong>
+            </td>
+            <td>
+              Liturgical year cycle folders<br />Ommitted for Feasts &
+              Solemnities, as they are the same every year
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left: 80px;">
+              <strong>[LiturgicalDate]/</strong>
+            </td>
+            <td>
+              Like '14th Sunday'<br />Folder that should be added as a shortcut
+              to 'Current Slides.'
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left: 100px;">LiveStream.pptx</td>
+            <td>Livestream slideshow for 9am Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 100px;"><strong>Overheads/</strong></td>
+            <td>Contains overhead slides for each Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 120px;">Vigil.pptx</td>
+            <td>Overhead slides for Vigil Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 120px;">7am.pptx</td>
+            <td>Overhead slides for 7am Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 120px;">9am.pptx</td>
+            <td>Overhead slides for 9am Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 120px;">11am.pptx</td>
+            <td>Overhead slides for 11am Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 120px;">5pm.pptx</td>
+            <td>Overhead slides for 5pm Mass</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px;">
+              <strong>Current Mass Slides/</strong>
+            </td>
+            <td>Shortcuts to upcoming or recent services</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px;">
+              <strong>Slideshow Templates/</strong>
+            </td>
+            <td>Templates for seasons and timeslots</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 40px;">
+              <strong
+                >Advent/<br />Christmas/<br />Easter/<br />Feasts/<br />Lent/<br />Ordinary
+                Time/</strong
+              >
+            </td>
+            <td>Seasonal folders</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">Live Stream Template.potx</td>
+            <td>Template for livestream slides</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">
+              Overheads No Music Template.potx
+            </td>
+            <td>Template for spoken-only overheads (7am only)</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">
+              Overheads Chanted Ordinary Template.potx
+            </td>
+            <td>
+              Template for chanted Mass settings
+              <ul>
+                <li>
+                  Used in Ordinary Time and Lent for 9am, 11am and 5pm Sunday
+                  Masses
+                </li>
+                <li>
+                  Ommitted from <code>Advent/</code> and
+                  <code>Easter, Christmas, Feasts/</code> folders
+                </li>
+                <li>
+                  Includes plainchant slides for Gloria, Sanctus, Memorial
+                  Acclamation, Amen and Agnus Dei
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">
+              Overheads Metrical Ordinary Template.potx
+            </td>
+            <td>
+              Overhead template for Masses where metrical settings of the
+              Ordinary are used
+              <ul>
+                <li>
+                  Used for Vigil Masses, and for 9am, 11am and 5pm Sunday Masses
+                  during Advent, Christmas, Easter and special feasts or
+                  solemnities
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
       </table>
+    </details>
 
-      <h3>3. Fill in Slides Using Elvanto & Lyrics Files</h3>
-      <ul>
-        <li>
-          Use the Elvanto service record to identify and paste in:
-          <ul>
-            <li>Psalm response and verses (same for all Masses)</li>
-            <li>Alleluia verse (same for all Masses)</li>
-            <li>Entrance and Communion Antiphons <strong>(7am only)</strong></li>
-          </ul>
-        </li>
-        <li>
-          Open the appropriate lyrics file and copy the section for each song:
-          <ul>
-            <li>
-              Includes title slide, lyrics slides, and a blank slide at the end.
-            </li>
-            <li>Hymns not needed for 7am.</li>
-          </ul>
-        </li>
-        <li>
-          If a hymn is missing:
-          <ul>
-            <li>
-              Check Elvanto for copyright info (CCLI, One License, or Public
-              Domain).
-            </li>
-            <li>
-              Add a new section to the lyrics file using the correct title slide
-              layout.
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <details open>
+      <summary>Step-by-Step Instructions</summary>
+      <form class="radio-group">
+        <label>
+          <input
+            type="radio"
+            name="choice"
+            value="LocalInstructions"
+            onclick="showGroup('LocalInstructions')"
+          />
+          I'm using Google Drive for Desktop
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="choice"
+            value="BrowserInstructions"
+            onclick="showGroup('BrowserInstructions')"
+          />
+          I'm using Google Drive in the browser
+        </label>
+      </form>
 
-      <h3>4. Special Notes for Livestream</h3>
-      <ul>
-        <li>Use the Live Stream Template as-is.</li>
-        <li>
-          It includes a green background and bottom-aligned text box with
-          transparency.
-        </li>
-        <li>No manual formatting is needed—just insert the correct content.</li>
-      </ul>
-      <details>
-        <summary>Final Checks</summary>
+      <div id="LocalInstructions" style="display: none">
+        <h3>1. Create the Google Drive Folder Shortcut</h3>
         <ul>
-          <li>All slideshows are saved in the correct archive folder.</li>
           <li>
-            The shortcut in <code>Current Mass Slides</code> is correctly named and
-            linked.
+            Use the Elvanto service record to determine the liturgical date
+            (e.g.
+            <em>15th Sunday in Ordinary Time, Year B</em>).
           </li>
-          <li>Lyrics are complete and properly formatted.</li>
-          <li>Livestream text appears correctly at the bottom of the screen.</li>
-        </ul>
-      </details>
-    </div>
+          <li>
+            Navigate to the corresponding <code>[Liturgical Date]/</code> folder
+            in <code>Mass Slides/Archives/</code>.
+          </li>
 
-    <div id="BrowserInstructions" style="display: none">
-      <div class="note">
-        It is recommended that you install <a target="_blank" rel="noopener noreferrer"
-          href="https://workspace.google.com/products/drive/#download">Google Drive for Desktop</a>, as it makes
-          this process much easier. This version of the guide is for those who
-          <em>can't</em> use that version of Google Drive.<br>
-          If you are using Google Drive in the browser, you will need to download any file you are using, whether you are editing it or simply copying from it. You will also need to re-upload any files you edit once you are done.
+          <li>
+            Add a shortcut to that folder inside
+            <code>Mass Slides/Current Mass Slides/</code>.
+            <div class="note">
+              You <em>must</em> use 'Add shortcut to Google Drive' and
+              <em>not</em> 'Create Shortcut' or the shortcut will not work
+              correctly on all devices.
+              <button class="example-toggle" onclick="toggleNextImage(this)">
+                Show me
+              </button>
+              <img
+                src="AddShortcutToGoogleDrive.png"
+                alt="Add Shortcut to Google Drive"
+                class="example-image"
+              />
+            </div>
+          </li>
+          <li>
+            Name it using the calendar date of the Sunday (e.g.
+            <code>2025-07-13</code>).
+          </li>
+        </ul>
+
+        <h3>2. Create Slideshows from Templates</h3>
+        <ul>
+          <li>
+            Navigate to
+            <code>Mass Slides/Slideshow Templates/[Season]/</code> and double
+            click on the appropriate templates to create new .ppt files from
+            them.
+          </li>
+          <li>
+            Save each file over its corresponding file in the archived folder
+            you linked in step 1.
+            <div class="note">
+              Usually the Chanted Ordinary template will be used multiple times
+              - for 9am, 11am and 5pm. In Christmas, Easter, Advent, and for
+              special feasts and solemnities this template is omitted, and the
+              Metrical Ordinary template will be used for these, along with the
+              Vigil Mass.
+            </div>
+          </li>
+        </ul>
+        <table>
+          <tr>
+            <th>Filename</th>
+            <th>Template</th>
+            <th>Notes</th>
+          </tr>
+          <tr>
+            <td><code>vigil.ppt</code></td>
+            <td><code>Overheads Metrical Ordinary Template.potx</code></td>
+            <td>Only text is included for the sung Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>7am.ppt</code></td>
+            <td><code>Overheads No Music Template.potx</code></td>
+            <td>No hymns; includes texts for entrance and communion chants</td>
+          </tr>
+          <tr>
+            <td><code>9am.ppt</code></td>
+            <td>
+              <code>Overheads Chanted Ordinary Template.potx</code> <br />(<code
+                >Overheads Metrical Ordinary Template.potx</code
+              >
+              where this template is ommitted)
+            </td>
+            <td>Includes chanted Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>11am.ppt</code></td>
+            <td>
+              <code>Overheads Chanted Ordinary Template.potx</code> <br />(<code
+                >Overheads Metrical Ordinary Template.potx</code
+              >
+              where this template is ommitted)
+            </td>
+            <td>Includes chanted Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>5pm.ppt</code></td>
+            <td>
+              <code>Overheads Chanted Ordinary Template.potx</code> <br />(<code
+                >Overheads Metrical Ordinary Template.potx</code
+              >
+              where this template is ommitted)
+            </td>
+            <td>Includes chanted Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>LiveStream.ppt</code></td>
+            <td><code>Live Stream Template.potx</code></td>
+            <td>
+              Green background, text at bottom, to allow layering with video
+              feed
+            </td>
+          </tr>
+        </table>
+
+        <h3>3. Fill in Slides Using Elvanto & Lyrics Files</h3>
+        <ul>
+          <li>
+            Use the Elvanto service record to identify and paste in:
+            <ul>
+              <li>Psalm response and verses (same for all Masses)</li>
+              <li>Alleluia verse (same for all Masses)</li>
+              <li>
+                Entrance and Communion Antiphons <strong>(7am only)</strong>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Open the appropriate lyrics file and copy the section for each song:
+            <ul>
+              <li>
+                Includes title slide, lyrics slides, and a blank slide at the
+                end.
+              </li>
+              <li>Hymns not needed for 7am.</li>
+            </ul>
+          </li>
+          <li>
+            If a hymn is missing:
+            <ul>
+              <li>
+                Check Elvanto for copyright info (CCLI, One License, or Public
+                Domain).
+              </li>
+              <li>
+                Add a new section to the lyrics file using the correct title
+                slide layout.
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>4. Special Notes for Livestream</h3>
+        <ul>
+          <li>Use the Live Stream Template as-is.</li>
+          <li>
+            It includes a green background and bottom-aligned text box with
+            transparency.
+          </li>
+          <li>
+            No manual formatting is needed—just insert the correct content.
+          </li>
+        </ul>
+        <details>
+          <summary>Final Checks</summary>
+          <ul>
+            <li>All slideshows are saved in the correct archive folder.</li>
+            <li>
+              The shortcut in <code>Current Mass Slides</code> is correctly
+              named and linked.
+            </li>
+            <li>Lyrics are complete and properly formatted.</li>
+            <li>
+              Livestream text appears correctly at the bottom of the screen.
+            </li>
+          </ul>
+        </details>
       </div>
 
-      <h3>1. Create the Google Drive Folder Shortcut</h3>
-      <ul>
-        <li>
-          Use the Elvanto service record to determine the liturgical date (e.g.
-          <em>15th Sunday in Ordinary Time, Year B</em>).
-        </li>
-        <li>Navigate to the corresponding archive folder.</li>
-        <li>
-          Add a shortcut to the Google Drive folder
-          <code>Mass Slides/Current Mass Slides/</code> of the archive folder.
-          <ul>
-            <li>Right-click the folder, click its actions button (<code>&vellip;</code>) or select the folder and hit
-              <code>Alt</code> + <code>A</code>
-            </li>
-            <li>Select Organise &gt; Add Shortcut</li>
-            <li>Choose <code>Mass Slides/Current Mass Slides/</code> to place the shortcut there.</li>
-          </ul>
-        </li>
-        <li>
-          Name it using the calendar date of the Sunday (e.g.
-          <code>2025-07-13</code>).
-        </li>
-      </ul>
+      <div id="BrowserInstructions" style="display: none">
+        <div class="note">
+          It is recommended that you install
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://workspace.google.com/products/drive/#download"
+            >Google Drive for Desktop</a
+          >, as it makes this process much easier. This version of the guide is
+          for those who <em>can't</em> use that version of Google Drive.<br />
+          If you are using Google Drive in the browser, you will need to
+          download any file you are using, whether you are editing it or simply
+          copying from it. You will also need to re-upload any files you edit
+          once you are done.
+        </div>
 
-      <h3>2. Download Templates and Lyrics Libraries</h3>
-      <div class="note">If you have <em>just</em> finished doing another set of slides you can skip this step, but it is
-        best to have a recent copy, as both the template files and the library files can change from time to time.</div>
-      <ul>
-        <li>
-          Navigate to <code>Mass Slides/Slideshow Templates/[Season]/</code> and download the template
-          (<code>.potx</code>) files.
-        </li>
-        <li>
-          Navigate to <code>Mass Slides/</code> and download <code>Overhead Lyrics.pptx</code> and
-          <code>Live Stream Lyrics.pptx</code>.
-        </li>
-      </ul>
-
-      <h3>3. Create Slideshows from Templates</h3>
-      <ul>
-        <li>Double-click on the template files downloaded in step 2 to create a new slideshow for each of the Mass
-          times, saving them as outlined in the table below.
-          <div class="note">You will need to create multiple new files from the Chanted Ordinary template, as it is used
-            for 9am, 11am, and 5pm.</div>
-        </li>
-      </ul>
-      <table>
-        <tr>
-          <th>Filename</th>
-          <th>Template</th>
-          <th>Notes</th>
-        </tr>
-        <tr>
-          <td><code>vigil.ppt</code></td>
-          <td><code>Overheads Metrical Ordinary Template.potx</code></td>
-          <td>Only text is included for the sung Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>7am.ppt</code></td>
-          <td><code>Overheads No Music Template.potx</code></td>
-          <td>No hymns; includes texts for entrance and communion chants</td>
-        </tr>
-        <tr>
-          <td><code>9am.ppt</code></td>
-          <td><code>Overheads Chanted Ordinary Template.potx</code> <br>(<code>Overheads Metrical Ordinary Template.potx</code> where this template is ommitted)</td>
-          <td>Includes chanted Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>11am.ppt</code></td>
-          <td><code>Overheads Chanted Ordinary Template.potx</code> <br>(<code>Overheads Metrical Ordinary Template.potx</code> where this template is ommitted)</td>
-          <td>Includes chanted Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>5pm.ppt</code></td>
-          <td><code>Overheads Chanted Ordinary Template.potx</code> <br>(<code>Overheads Metrical Ordinary Template.potx</code> where this template is ommitted)</td>
-          <td>Includes chanted Ordinary</td>
-        </tr>
-        <tr>
-          <td><code>LiveStream.ppt</code></td>
-          <td><code>Live Stream Template.potx</code></td>
-          <td>Green background, text at bottom, to allow layering with video feed</td>
-        </tr>
-      </table>
-
-      <h3>4. Fill in Slides Using Elvanto & Lyrics Library Files</h3>
-      <ul>
-        <li>
-          Use the Elvanto service record to identify and paste in:
-          <ul>
-            <li>Psalm response and verses (same for all Masses)</li>
-            <li>Alleluia verse (same for all Masses)</li>
-            <li>Entrance and Communion Antiphons <strong>(7am only)</strong></li>
-          </ul>
-        </li>
-        <li>
-          Open the appropriate lyrics library file (downloaded in step 2) and copy the section for each song:
-          <div class="note">It is easiest if you select a song's lyrics by clicking on its section title in the panel on
-            the left. This selects all the slides for the song, including its title slide and empty final slide, as well
-            as its section title.</div>
-          <ul>
-            <li>
-              Includes title slide, lyrics slides, and a blank slide at the end.
-            </li>
-            <li>Hymns not needed for 7am.</li>
-          </ul>
-        </li>
-        <li>
-          If a hymn is missing:
-          <ul>
-            <li>
-              Check Elvanto for copyright info (CCLI, One License, or Public
-              Domain).
-            </li>
-            <li>
-              Add a new section to the lyrics file using the correct title slide
-              layout.
-            </li>
-          </ul>
-        </li>
-        <li>Upload the new files to the shortcutted Archive folder, overwriting the old ones.</li>
-      </ul>
-
-      <h3>4. Special Notes for Livestream</h3>
-      <ul>
-        <li>Use the Live Stream Template as-is.</li>
-        <li>
-          It includes a green background and bottom-aligned text box with
-          transparency.
-        </li>
-        <li>No manual formatting is needed—just insert the correct content.</li>
-      </ul>
-
-      <details>
-        <summary>Final Checks</summary>
+        <h3>1. Create the Google Drive Folder Shortcut</h3>
         <ul>
-          <li>All slideshows are saved in the correct archive folder.</li>
           <li>
-            The shortcut in <code>Current Mass Slides</code> is correctly named and
-            linked.
+            Use the Elvanto service record to determine the liturgical date
+            (e.g.
+            <em>15th Sunday in Ordinary Time, Year B</em>).
           </li>
-          <li>Lyrics are complete and properly formatted.</li>
-          <li>Livestream text appears correctly at the bottom of the screen.</li>
+          <li>Navigate to the corresponding archive folder.</li>
+          <li>
+            Add a shortcut to the Google Drive folder
+            <code>Mass Slides/Current Mass Slides/</code> of the archive folder.
+            <ul>
+              <li>
+                Right-click the folder, click its actions button
+                (<code>&vellip;</code>) or select the folder and hit
+                <code>Alt</code> + <code>A</code>
+              </li>
+              <li>Select Organise &gt; Add Shortcut</li>
+              <li>
+                Choose <code>Mass Slides/Current Mass Slides/</code> to place
+                the shortcut there.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Name it using the calendar date of the Sunday (e.g.
+            <code>2025-07-13</code>).
+          </li>
         </ul>
-      </details>
-    </div>
-  </details>
-  <script>
-    function showGroup(group) {
-    document.getElementById("LocalInstructions").style.display = "none";
-    document.getElementById("BrowserInstructions").style.display = "none";
-    document.getElementById(group).style.display = "block";
-  }
-  function toggleNextImage(button) {
-    const image = button.nextElementSibling;
-    const isHidden = image.style.display === "none" || image.style.display === "";
-  
-    if (isHidden) {
-      // Restart the GIF by resetting the src
-      const currentSrc = image.src;
-      image.src = "";
-      image.style.display = "block";
-      setTimeout(() => {
-        image.src = currentSrc;
-      }, 10); // Small delay to allow browser to reset
-      button.textContent = "Hide";
-    } else {
-      image.style.display = "none";
-      button.textContent = "Show me";
-    }
-  }
-  </script>
-</body>
 
+        <h3>2. Download Templates and Lyrics Libraries</h3>
+        <div class="note">
+          If you have <em>just</em> finished doing another set of slides you can
+          skip this step, but it is best to have a recent copy, as both the
+          template files and the library files can change from time to time.
+        </div>
+        <ul>
+          <li>
+            Navigate to
+            <code>Mass Slides/Slideshow Templates/[Season]/</code> and download
+            the template (<code>.potx</code>) files.
+          </li>
+          <li>
+            Navigate to <code>Mass Slides/</code> and download
+            <code>Overhead Lyrics.pptx</code> and
+            <code>Live Stream Lyrics.pptx</code>.
+          </li>
+        </ul>
+
+        <h3>3. Create Slideshows from Templates</h3>
+        <ul>
+          <li>
+            Double-click on the template files downloaded in step 2 to create a
+            new slideshow for each of the Mass times, saving them as outlined in
+            the table below.
+            <div class="note">
+              You will need to create multiple new files from the Chanted
+              Ordinary template, as it is used for 9am, 11am, and 5pm.
+            </div>
+          </li>
+        </ul>
+        <table>
+          <tr>
+            <th>Filename</th>
+            <th>Template</th>
+            <th>Notes</th>
+          </tr>
+          <tr>
+            <td><code>vigil.ppt</code></td>
+            <td><code>Overheads Metrical Ordinary Template.potx</code></td>
+            <td>Only text is included for the sung Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>7am.ppt</code></td>
+            <td><code>Overheads No Music Template.potx</code></td>
+            <td>No hymns; includes texts for entrance and communion chants</td>
+          </tr>
+          <tr>
+            <td><code>9am.ppt</code></td>
+            <td>
+              <code>Overheads Chanted Ordinary Template.potx</code> <br />(<code
+                >Overheads Metrical Ordinary Template.potx</code
+              >
+              where this template is ommitted)
+            </td>
+            <td>Includes chanted Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>11am.ppt</code></td>
+            <td>
+              <code>Overheads Chanted Ordinary Template.potx</code> <br />(<code
+                >Overheads Metrical Ordinary Template.potx</code
+              >
+              where this template is ommitted)
+            </td>
+            <td>Includes chanted Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>5pm.ppt</code></td>
+            <td>
+              <code>Overheads Chanted Ordinary Template.potx</code> <br />(<code
+                >Overheads Metrical Ordinary Template.potx</code
+              >
+              where this template is ommitted)
+            </td>
+            <td>Includes chanted Ordinary</td>
+          </tr>
+          <tr>
+            <td><code>LiveStream.ppt</code></td>
+            <td><code>Live Stream Template.potx</code></td>
+            <td>
+              Green background, text at bottom, to allow layering with video
+              feed
+            </td>
+          </tr>
+        </table>
+
+        <h3>4. Fill in Slides Using Elvanto & Lyrics Library Files</h3>
+        <ul>
+          <li>
+            Use the Elvanto service record to identify and paste in:
+            <ul>
+              <li>Psalm response and verses (same for all Masses)</li>
+              <li>Alleluia verse (same for all Masses)</li>
+              <li>
+                Entrance and Communion Antiphons <strong>(7am only)</strong>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Open the appropriate lyrics library file (downloaded in step 2) and
+            copy the section for each song:
+            <div class="note">
+              It is easiest if you select a song's lyrics by clicking on its
+              section title in the panel on the left. This selects all the
+              slides for the song, including its title slide and empty final
+              slide, as well as its section title.
+            </div>
+            <ul>
+              <li>
+                Includes title slide, lyrics slides, and a blank slide at the
+                end.
+              </li>
+              <li>Hymns not needed for 7am.</li>
+            </ul>
+          </li>
+          <li>
+            If a hymn is missing:
+            <ul>
+              <li>
+                Check Elvanto for copyright info (CCLI, One License, or Public
+                Domain).
+              </li>
+              <li>
+                Add a new section to the lyrics file using the correct title
+                slide layout.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Upload the new files to the shortcutted Archive folder, overwriting
+            the old ones.
+          </li>
+        </ul>
+
+        <h3>4. Special Notes for Livestream</h3>
+        <ul>
+          <li>Use the Live Stream Template as-is.</li>
+          <li>
+            It includes a green background and bottom-aligned text box with
+            transparency.
+          </li>
+          <li>
+            No manual formatting is needed—just insert the correct content.
+          </li>
+        </ul>
+
+        <details>
+          <summary>Final Checks</summary>
+          <ul>
+            <li>All slideshows are saved in the correct archive folder.</li>
+            <li>
+              The shortcut in <code>Current Mass Slides</code> is correctly
+              named and linked.
+            </li>
+            <li>Lyrics are complete and properly formatted.</li>
+            <li>
+              Livestream text appears correctly at the bottom of the screen.
+            </li>
+          </ul>
+        </details>
+      </div>
+    </details>
+    <script>
+      function showGroup(group) {
+        document.getElementById("LocalInstructions").style.display =  "none";
+        document.getElementById("BrowserInstructions").style.display  = "none";
+        document.getElementById(group).style.display = "block";
+      }
+      function toggleNextImage(button) {
+        const image = button.nextElementSibling;
+        const isHidden = image.style.display === "none" || image. style.display === "";
+
+        if (isHidden) {
+          // Restart the GIF by resetting the src
+          const currentSrc = image.src;
+          image.src = "";
+          image.style.display = "block";
+          setTimeout(() => {
+            image.src = currentSrc;
+          }, 10); // Small delay to allow browser to reset
+          button.textContent = "Hide";
+        } else {
+          image.style.display = "none";
+          button.textContent = "Show me";
+        }
+      }
+      function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark-mode');
+
+        html.classList.remove(isDark ? 'dark-mode' : 'light-mode');
+        html.classList.add(isDark ? 'light-mode' : 'dark-mode');
+
+        localStorage.setItem('theme', isDark ? 'light-mode' : 'dark-mode');
+      }
+    </script>
+  </body>
 </html>
